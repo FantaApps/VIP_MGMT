@@ -7,7 +7,6 @@
     "pages/web/web",
     "pages/core/test/test",
     "pages/core/score/score",
-    "pages/core/timetable/timetable",
     "pages/core/room/room",
     "pages/core/course/course",
     "pages/core/course/search",
