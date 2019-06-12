@@ -1,3 +1,6 @@
 {
-  
+  "navigationBarBackgroundColor": "#00BCD4",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "VIP积分",
+  "enablePullDownRefresh": false
 }

@@ -23,12 +23,23 @@ Page({
         help: "密码为图书馆的密码，默认密码为身份证后六位,忘记密码可以访问图书馆找回"
       },
       jwc: {
-        name: "教务处",
+        name: "VIP",
         url: "/bind",
         verify: "jwc_verify",
         password: "jwc_password",
-        help: "研究生请使用信息门户认证，密码为本科选课系统的密码，默认密码为学号,忘记密码可以访问选课系统找回"
+        help: "若有疑问，请联系xxxxx"
       }
+    }
+  },
+
+  mockRes: {
+    status: "200",
+    data : {
+      name : "zhaoming",
+      xh: 1234567890,
+      user_token: "1234",
+      data: [],
+      params: []
     }
   },
 
@@ -115,6 +126,7 @@ Page({
     var encStr = encrypt_rsa.encrypt(params.password)
     params.password = encStr
     params.type = "base64"
+    console.log("zhaoming come here")
     wx.request({
       url: app.server + this.data.types[this.type].url,
       data: params,

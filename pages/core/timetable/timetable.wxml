@@ -1,3 +1,26 @@
+
+<view class="table">
+  <view class="tr bg-w">
+    <view class="th">编号</view>
+    <view class="th">类型</view>
+    <view class="th ">价钱</view>
+  </view>
+  <block wx:for="{{listData}}" wx:key="{{code}}">
+    <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
+      <view class="td">{{item.code}}</view>
+      <view class="td">{{item.text}}</view>
+      <view class="td">{{item.type}}</view>
+    </view>
+    <view class="tr" wx:else>
+      <view class="td">{{item.code}}</view>
+      <view class="td">{{item.text}}</view>
+      <view class="td">{{item.type}}</view>
+    </view>
+  </block>
+</view>
+
+
+<!--
 <view class='header'>
   <view class='layout-row layout-center-start'>
     <view class="shift layout-row layout-space-around-center">
@@ -16,6 +39,8 @@
     </view>
   </view>
 </view>
+-->
+<!--
 <scroll-view class="box" scroll-x="true" scroll-y="true">
   <view class="top">
     <view class="title" wx:if="{{month}}">{{month}}月</view>
@@ -72,3 +97,4 @@
     </view>
   </view>
 </scroll-view>
+-->

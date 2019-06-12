@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/core/timetable/timetable",
     "pages/login/login",
     "pages/my/my",
     "pages/web/web",
@@ -18,7 +19,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#00BCD4",
-    "navigationBarTitleText": "WeOUC",
+    "navigationBarTitleText": "若水藏真",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {

@@ -8,8 +8,8 @@
       </view>
       <form bindsubmit="bind">
         <view class="input-group" hover-class="active">
-          <text class="input-label">学号</text>
-          <input name="xh" type="number" placeholder="请输入您的学号"/>
+          <text class="input-label">VIP号</text>
+          <input name="xh" type="number" placeholder="请输入您的VIP号"/>
         </view>
         <view class="input-group" hover-class="active">
           <text class="input-label">密码</text>

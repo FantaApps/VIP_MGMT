@@ -10,39 +10,17 @@ Page({
   data: {
     "swiper_height": 200,
     "notices": [{
-      url: "https://mp.weixin.qq.com/s/_NMmkQSgxDvu1MPmC4f3_g",
-      pic: "https://lg-mq3kp55s-1253895749.cos.ap-shanghai.myqcloud.com/stop.jpg"
+      url: "http://www.dianping.com/shop/126396111",
+      pic: "http://p1.meituan.net/wedding/a79df9886588281b39acaa243437eb9319019.jpg%40960w_300h_0e_1l%7Cwatermark%3D0"
     }],
     "navs": [
       {
         key: "xk_result",
-        desc: "选课结果",
+        desc: "VIP积分",
         verify: "jwc"
       },{
         key: "timetable",
-        desc: "课表",
-        verify: "jwc"
-      },
-      {
-        key: "score",
-        desc: "成绩",
-        verify: "jwc"
-      }, {
-        key: "test",
-        desc: "考场",
-        verify: "jwc"
-      }, {
-        key: "room",
-        desc: "自习室",
-        verify: ""
-      }, {
-        key: "course",
-        desc: "蹭课",
-        verify: ""
-      },
-      {
-        key: "carpool",
-        desc: "拼车",
+        desc: "销售成绩",
         verify: "jwc"
       }
     ],
@@ -52,7 +30,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    if(wx.cloud){
+    console.log("come here to load index")
+    /*if(wx.cloud){
+      console.log("come here to load cloud")
       wx.cloud.init({
         env: 'develop-b907d7'
       })
@@ -68,13 +48,13 @@ Page({
           'week_index': week,
         })
       })
-    }
+    }*/
     var that = this
     this.setData({
       "remind": app.remind,
       "offline": app.offline,
     })
-    if (app.offline == false && app.sildes == undefined) {
+    /*if (app.offline == false && app.sildes == undefined) {
       wx.showLoading({
         title: '加载中',
       })
@@ -96,11 +76,12 @@ Page({
           wx.hideLoading();
         }
       })
-    } else {
+    } 
+    else {
       wx.setData({
         notices: app.slides
       })
-    }
+    }*/
   },
 
   /**
@@ -314,26 +295,26 @@ Page({
     var verify = e.detail.target.dataset.verify; //需要的权限
     var content = ""
     var url = ""
-    console.log(verify)
+    /*console.log(verify)
     if (verify == "jwc" && !app.jwc) {
-      content = "请先绑定教务处"
+      content = "请先绑定VIP账号"
     } else if (verify == "id" && !app.id) {
       content = "请先绑定信息门户"
     } else if (verify == "xh" && !app.xh) {
       content = "请先绑定账号"
-    } else {
-      wx.navigateTo({
-        url: '/pages/core/' + key + "/" + key,
-      })
-      app.add_formid(e.detail.formId)
-    }
-    if (content != "") {
-      wx.showModal({
-        title: '绑定提示',
-        content: content,
-        confirmText: "去绑定",
-      })
-    }
+    } else {*/
+    wx.navigateTo({
+      url: '/pages/core/' + key + "/" + key,
+    })
+    //  app.add_formid(e.detail.formId)
+    //}
+    //if (content != "") {
+    //  wx.showModal({
+    //    title: '绑定提示',
+    //    content: content,
+    //    confirmText: "去绑定",
+    //  })
+    //}
   },
   noticeTo: function(e) {
     console.log(e)
