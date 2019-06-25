@@ -11,79 +11,50 @@ Page({
     "swiper_height": 200,
     "notices": [{
       url: "http://www.dianping.com/shop/126396111",
-      pic: "http://p1.meituan.net/wedding/a79df9886588281b39acaa243437eb9319019.jpg%40960w_300h_0e_1l%7Cwatermark%3D0"
+      pic: "../../images/ruoshui.png"
     }],
     "navs": [
       {
-        key: "xk_result",
+        key: "score",
         desc: "VIP积分",
         verify: "jwc"
       },{
-        key: "timetable",
+        key: "xk_result",
         desc: "销售成绩",
         verify: "jwc"
       }
     ],
+    canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
-
+  
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log("come here to load index")
-    /*if(wx.cloud){
-      console.log("come here to load cloud")
-      wx.cloud.init({
-        env: 'develop-b907d7'
-      })
-      const db = wx.cloud.database()
-      db.collection('news').get().then(res => {
-        var a = new Array("日", "一", "二", "三", "四", "五", "六");
-        var week = new Date().getDay();
-        var str = "周" + a[week];
-        this.setData({
-          "title": res.data[0].title,
-          "url": res.data[0].url,
-          'week': str,
-          'week_index': week,
-        })
-      })
-    }*/
+    // 查看是否授权
+    wx.getSetting({
+      success(res) {
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          wx.getUserInfo({
+            success: function (res) {
+              
+              app.globalData.userInfo = res.userInfo
+              console.log(app.globalData.userInfo)
+            }
+          })
+        }
+      }
+    })
     var that = this
     this.setData({
       "remind": app.remind,
       "offline": app.offline,
     })
-    /*if (app.offline == false && app.sildes == undefined) {
-      wx.showLoading({
-        title: '加载中',
-      })
-      wx.request({
-        url: app.server + "/config",
-        data: {},
-        header: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        method: "GET",
-        success: function(res) {
-          that.init(res.data);
-        },
-        fail: function(error) {
-          console.log(error)
-          that.init()
-        },
-        complete: function(res) {
-          wx.hideLoading();
-        }
-      })
-    } 
-    else {
-      wx.setData({
-        notices: app.slides
-      })
-    }*/
   },
-
+  bindGetUserInfo(e) {
+    console.log(e.detail.userInfo)
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -295,26 +266,10 @@ Page({
     var verify = e.detail.target.dataset.verify; //需要的权限
     var content = ""
     var url = ""
-    /*console.log(verify)
-    if (verify == "jwc" && !app.jwc) {
-      content = "请先绑定VIP账号"
-    } else if (verify == "id" && !app.id) {
-      content = "请先绑定信息门户"
-    } else if (verify == "xh" && !app.xh) {
-      content = "请先绑定账号"
-    } else {*/
+    
     wx.navigateTo({
       url: '/pages/core/' + key + "/" + key,
     })
-    //  app.add_formid(e.detail.formId)
-    //}
-    //if (content != "") {
-    //  wx.showModal({
-    //    title: '绑定提示',
-    //    content: content,
-    //    confirmText: "去绑定",
-    //  })
-    //}
   },
   noticeTo: function(e) {
     console.log(e)

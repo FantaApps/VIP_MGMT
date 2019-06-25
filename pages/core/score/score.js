@@ -15,23 +15,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    app.jwc = app.jwc ? app.jwc : wx.getStorageSync("jwc")
-    app.user_token = app.user_token ? app.user_token : wx.getStorageSync("user_token")
-    if (!app.user_token) {
-      app.remind = "未绑定"
-      wx.navigateTo({
-        url: '/pages/index/index'
-      });
-      return
-    }
     this.setData({
-      "xh": app.jwc.xh
+      'xh': 1234567890,
+      'jd': 1,
+      'total_xf': 20,
+      'aver_score': 100
     })
-    if (app.offline) {
-      var cj = wx.getStorageSync("cj")
-      this.render_cj(cj)
-    } else
-      this.get_cj()
   },
 
   /**

@@ -73,3 +73,24 @@ button.form_button::after {
 .color6{
   background-color: #4CAF50;
 }
+
+.headView {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50rpx;
+    height: 300rpx;
+    width: 750rpx;
+    position: relative;
+}
+/**
+*open-data 的头像做不了圆角
+*这里是覆盖一个镂空的view在上面 镂空view的边界做成与周围背景颜色一样 做了伪圆角
+**/
+.headView .icon {
+    position: absolute;
+    height: 180rpx;
+    width: 180rpx;
+    border-radius: 50%;
+    border: 50rpx solid #f1f1f1;
+}

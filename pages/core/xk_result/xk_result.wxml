@@ -1,8 +1,8 @@
 
 <view class="table">
   <view class="tr bg-w">
-    <view class="th">VIP号</view>
-    <view class="th">级别</view>
+    <view class="th">月份</view>
+    <view class="th">销售量</view>
     <view class="th ">积分</view>
   </view>
   <block wx:for="{{listData}}" wx:key="{{code}}">

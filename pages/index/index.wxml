@@ -23,21 +23,6 @@
     </form>
   </view>
 
-  <!--
-  <view class='card' wx:if="{{url}}">
-    <navigator url='/pages/web/web?url={{url}}'>
-      <view class='card-desc text-caption'>今日推送</view>
-      <view class='card-content layout-row layout-start-center' style='height:120rpx;'>
-        <view style='color:white; height:inherit;min-width:120rpx;' class='layout-column layout-center color{{week_index}}'>
-          {{week}}
-        </view>
-        <view class='text-body1' style="margin-left:30rpx;text-decoration:underline">
-          {{title}}
-        </view>
-      </view>
-    </navigator>
-  </view>
-  -->
   <view class='card'>
     <view class='card-desc text-caption'>今日销售</view>
 
@@ -50,21 +35,15 @@
     </view>
 
     <view wx:else class='card-content'>
-    <!--
-      <view wx:for="{{courses}}" class='layout-row layout-space-between-center today_kb'>
-        <view class='layout-column layout-start'>
-          <view class='text-subtitle2'>{{item.cls.name}}</view>
-          <view class='text-caption' style='margin-top:10rpx'>{{item.classtime}}</view>
-        </view>
-        <view class='text-caption'>{{item.cls.classRoom}}</view>
-      </view>
-      -->
       <view class='card-content layout-row layout-center-start'>
         <button class='remind-btn sc-button sc-outlined-btn ' bindtap="navigatetokb" sc-class="sc-btn sc-outlined-btn" flat>今日销售</button>
       </view>
     </view>
-
     <ad unit-id="adunit-ec3e3215c5407d2e"></ad>
-  </view>
 
+  </view>
+  <view class='headView'>
+    <open-data class='icon' mode='aspectFit' type='userAvatarUrl'></open-data>
+    <view class='icon'/>
+  </view>
 </view>
