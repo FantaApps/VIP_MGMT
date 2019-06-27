@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/core/timetable/timetable",
     "pages/core/score/score",
-    "pages/core/xk_result/xk_result"
+    "pages/core/xk_result/xk_result",
+    "pages/core/card/card"
   ],
   "window": {
     "backgroundTextStyle": "light",

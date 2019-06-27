@@ -22,6 +22,10 @@ Page({
         key: "xk_result",
         desc: "销售成绩",
         verify: "jwc"
+      }, {
+        key: "card",
+        desc: "产品展示",
+        verify: "jwc"
       }
     ],
     canIUse: wx.canIUse('button.open-type.getUserInfo')
