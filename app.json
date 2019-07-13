@@ -4,7 +4,7 @@
     "pages/core/timetable/timetable",
     "pages/core/score/score",
     "pages/core/xk_result/xk_result",
-    "pages/core/card/card"
+    "pages/authorize/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

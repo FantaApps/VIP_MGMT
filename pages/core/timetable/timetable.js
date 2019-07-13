@@ -1,6 +1,5 @@
 // pages/core/timetable/timetable.js
 var app = getApp()
-console.log("now come here")
 Page({
   data: {
     listData: [
