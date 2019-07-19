@@ -1,9 +1,9 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/core/timetable/timetable",
+    "pages/core/sale_today/sale_today",
     "pages/core/score/score",
-    "pages/core/xk_result/xk_result",
+    "pages/core/sale_summary/sale_summary",
     "pages/authorize/index"
   ],
   "window": {

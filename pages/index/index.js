@@ -19,7 +19,7 @@ Page({
         desc: "VIP积分",
         verify: "jwc"
       },{
-        key: "xk_result",
+        key: "sale_summary",
         desc: "销售成绩",
         verify: "jwc"
       }
@@ -258,7 +258,7 @@ Page({
   },
   navigatetokb: function() {
     wx.navigateTo({
-      url: '/pages/core/timetable/timetable',
+      url: '/pages/core/sale_today/sale_today',
     })
   },
   submit: function(e) {

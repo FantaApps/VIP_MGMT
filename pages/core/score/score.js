@@ -21,30 +21,41 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    let that = this
     wx.request({
-      url: 'http://192.168.199.106:5000/put_file', //仅为示例，并非真实的接口地址
+      url: app.server + "/get_file",
       data: {
-        from: 'A',
-        to: 'a',
-        amnt: 1000,
-        tag: "TX"
+        project: 'diamond',
+        key: '022IWzw70fQLVF1FDsw70riuw70IWzw6',
+        secondary: 'vipinfo',
+        tag: "KV"
       },
       method: 'POST',
       header: {
         'content-type': 'application/json' // 默认值
       },
       success(res) {
-        console.log(res.data)
+        
+        var json = res.data.replace("\[", "").replace("\]", "").replace("\'", "").replace("\'", "")
+        console.log(json)
+        var obj = JSON.parse(json)
+
+        if (obj.vipType == 'ADVANCED') {
+          obj.vipType = "珠宝经理";
+        }
+        that.setData({
+          'xh': obj.vipID,
+          'jd': obj.vipType,
+          'total_xf': obj.developedVIP,
+          'aver_score': obj.score
+        })
+      },
+      fail(res) {
+        console.log(res)
       }
     })
 
-    this.setData({
-      'xh': 1234567890,
-      'jd': "珠宝经理",
-      'total_xf': 20,
-      'aver_score': 100
-    })
+    
   },
 
   /**

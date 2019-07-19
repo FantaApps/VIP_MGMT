@@ -7,14 +7,14 @@
   </view>
   <block wx:for="{{listData}}" wx:key="{{code}}">
     <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
-      <view class="td">{{item.code}}</view>
-      <view class="td">{{item.text}}</view>
+      <view class="td">{{item.ID}}</view>
       <view class="td">{{item.type}}</view>
+      <view class="td">{{item.price}}</view>
     </view>
     <view class="tr" wx:else>
-      <view class="td">{{item.code}}</view>
-      <view class="td">{{item.text}}</view>
+      <view class="td">{{item.ID}}</view>
       <view class="td">{{item.type}}</view>
+      <view class="td">{{item.price}}</view>
     </view>
   </block>
 </view>

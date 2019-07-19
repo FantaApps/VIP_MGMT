@@ -7,7 +7,8 @@ App({
   unauth: true,
   ui : {},
   globalData: {
-    userInfo: null
+    userInfo: null,
+    token : ""
   },
   getUserInfo: function (cb) {
     var that = this
@@ -29,10 +30,11 @@ App({
   },
   
   onLaunch: function() {
-
     const token = wx.getStorageSync('token');
+    this.globalData.token = token;
+    console.log(token)
     if (!token) {
-      this.goLoginPageTimeOut()
+      this.goLoginPageTimeOut()  
       return
     }
   },
@@ -48,8 +50,8 @@ App({
       })
     }, 1000)
   },
-
   
-  server: "https://www.streamnet-chain.com/",
-
+  //server: "https://www.streamnet-chain.com",
+  //server: "https://39.100.142.164:443",
+  server: "http://localhost:5000",
 })
