@@ -29,6 +29,15 @@ Page({
           arr = arr.concat(obj[key])
         }
         arr.sort(that.compare)
+
+        for(var i in arr) {
+          var item = arr[i]
+          if (item.type == "TRUE_DIAMOND") {
+            item.type = "钻石"
+          } else if (item.type == "MOSANG") {
+            item.type = "莫桑"
+          }
+        }
         that.setData({
           'listData': arr
         })

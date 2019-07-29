@@ -32,6 +32,17 @@ Page({
         var json = "{"+res.data.replace("\[", "").replace("\]", "").replace(/'/g, "")+"}"
         var obj = JSON.parse(json)
         for (var key in obj) {
+          for (var i in obj[key]) {
+            var item = obj[key][i]
+            console.log(item)
+            if(item.type == "TRUE_DIAMOND") {
+              item.type = "钻石"
+            } else if (item.type == "MOSANG") {
+              item.type = "莫桑"
+            }
+          }
+        }
+        for (var key in obj) {
           that.setData({
             'listData' : obj[key]
           })
