@@ -2,15 +2,26 @@ var app = getApp()
 Page({
   data: {
   },
+  curday : function (sp) {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //As January is 0.
+    var yyyy = today.getFullYear();
+
+    if (dd < 10) dd = '0' + dd;
+    if (mm < 10) mm = '0' + mm;
+    return (mm + sp + dd + sp + yyyy);
+  },
   onLoad: function () {
     let that = this
+    var today = this.curday('-');
     wx.request({
       url: app.server + "/get_file",
       data: {
         project: 'diamond',
-        key: '022IWzw70fQLVF1FDsw70riuw70IWzw6',
+        key: app.globalData.token,
         secondary: 'sale',
-        third: "20190710",
+        third: today,
         tag: "KV"
       },
       method: 'POST',

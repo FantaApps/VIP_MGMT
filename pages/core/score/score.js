@@ -26,7 +26,7 @@ Page({
       url: app.server + "/get_file",
       data: {
         project: 'diamond',
-        key: '022IWzw70fQLVF1FDsw70riuw70IWzw6',
+        key: app.globalData.token,
         secondary: 'vipinfo',
         tag: "KV"
       },

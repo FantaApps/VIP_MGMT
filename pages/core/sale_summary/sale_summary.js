@@ -9,7 +9,7 @@ Page({
       url: app.server + "/get_file",
       data: {
         project: 'diamond',
-        key: '022IWzw70fQLVF1FDsw70riuw70IWzw6',
+        key: app.globalData.token,
         secondary: 'sale',
         tag: "KV"
       },
@@ -28,6 +28,7 @@ Page({
         for (var key in obj) {
           arr = arr.concat(obj[key])
         }
+        arr.sort(that.compare)
         that.setData({
           'listData': arr
         })
@@ -36,6 +37,14 @@ Page({
         console.log(res)
       }
     })
-  }
-
+  },
+  compare: function (a, b) {
+    if (a.ID < b.ID) {
+      return -1;
+    }
+    if (a.ID > b.ID){
+      return 1;
+    }
+    return 0;
+  },
 })

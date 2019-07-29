@@ -51,7 +51,5 @@ App({
     }, 1000)
   },
   
-  //server: "https://www.streamnet-chain.com",
-  //server: "https://39.100.142.164:443",
-  server: "http://localhost:5000",
+  server: "https://www.streamnet-chain.com",
 })
