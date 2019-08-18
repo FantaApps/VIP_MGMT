@@ -1,0 +1,26 @@
+
+<view class="table">
+  <view class="tr bg-w">
+    <view class="th">编号</view>
+    <view class="th">类型</view>
+    <view class="th">名字</view>
+    <view class="th ">价钱</view>
+    <view class="th ">销售时间</view>
+  </view>
+  <block wx:for="{{listData}}" wx:key="{{code}}">
+    <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
+      <view class="td">{{item.productInfo.iD}}</view>
+      <view class="td">{{item.productInfo.product_type}}</view>
+      <view class="td">{{item.productInfo.product_name}}</view>
+      <view class="td">{{item.productInfo.product_price}}</view>
+      <view class="td">{{item.sale_time}}</view>
+    </view>
+    <view class="tr" wx:else>
+      <view class="td">{{item.productInfo.iD}}</view>
+      <view class="td">{{item.productInfo.product_type}}</view>
+      <view class="td">{{item.productInfo.product_name}}</view>
+      <view class="td">{{item.productInfo.product_price}}</view>
+      <view class="td">{{item.sale_time}}</view>
+    </view>
+  </block>
+</view>

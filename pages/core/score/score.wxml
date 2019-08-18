@@ -3,10 +3,16 @@
     <view class='header'>
     </view>
     <view class="info layout-row layout-space-around-start">
-      <text class='text-caption' style='width:50%'>VIP号:{{xh}}</text>
-      <text class='text-caption' style='width:50%'>当前发展VIP:{{total_xf}}</text>
-      <text class=' text-caption' style='width:50%'>VIP类型:{{jd}}</text>
-      <text class='text-caption' style='width:50%'>加权分数:{{aver_score}}</text>
+      <text class='text-caption' style='width:50%'>名字:{{name}}</text>
+      <text class='text-caption' style='width:50%'>VIP号:{{id}}</text>
+    </view>
+    <view class="info layout-row layout-space-around-start">
+      <text class=' text-caption' style='width:50%'>按月销售:{{monthly_sale}}</text>
+      <text class='text-caption' style='width:50%'>总销售:{{total_sale}}</text>
+    </view>
+    <view class="info layout-row layout-space-around-start">
+      <text class='text-caption' style='width:50%'>发展VIP:{{vip_developed}}</text>
+      <text class='text-caption' style='width:50%'>VIP类型:{{vip_type}}</text>
     </view>
   </view>
 </view>

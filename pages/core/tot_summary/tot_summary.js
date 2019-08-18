@@ -6,10 +6,10 @@ Page({
   onLoad: function () {
     let that = this
     wx.request({
-      url: app.server + "/v1/product/sale/summary",
+      url: app.server + "/v1/product/sale/summary_all",
       data: {
         project: '若水藏真',
-        weChatId: app.globalData.token,
+        weChatId: '',
       },
       method: 'GET',
       header: {

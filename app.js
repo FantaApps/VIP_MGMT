@@ -8,7 +8,36 @@ App({
   ui : {},
   globalData: {
     userInfo: null,
-    token : ""
+    token : "",
+    nav : []
+  },
+  data : {
+    "navs": [
+      {
+        key: "score",
+        desc: "VIP积分",
+        verify: "jwc"
+      }, {
+        key: "sale_summary",
+        desc: "销售成绩",
+        verify: "jwc"
+      }
+    ],
+    "navs1": [
+      {
+        key: "score",
+        desc: "VIP积分",
+        verify: "jwc"
+      }, {
+        key: "sale_summary",
+        desc: "销售成绩",
+        verify: "jwc"
+      }, {
+        key: "tot_summary",
+        desc: "销售汇总",
+        verify: "jwc"
+      }
+    ]
   },
   getUserInfo: function (cb) {
     var that = this
@@ -30,12 +59,21 @@ App({
   },
   
   onLaunch: function() {
-    const token = wx.getStorageSync('token');
+    const token = wx.getStorageSync('openid');
     this.globalData.token = token;
     console.log(token)
+
+    if (token == 'o4-7m5WiO7PdZRnBLEyO7anGn3FM' ||
+        token == 'o4-7m5W7wuhN8C2ktqxt0rpbvBpc') {
+      this.globalData.nav = this.data.navs1
+    } else {
+      this.globalData.nav = this.data.navs
+    }
+
     if (!token) {
-      this.goLoginPageTimeOut()  
-      return
+      wx.navigateTo({
+        url: "/pages/core/user/user"
+      })
     }
   },
   goLoginPageTimeOut: function() {
@@ -51,5 +89,7 @@ App({
     }, 1000)
   },
   
-  server: "https://www.streamnet-chain.com",
+  //server: "https://www.streamnet-chain.com",
+  //server: "http://localhost:8089",
+  server: "http://39.100.142.164:8089",
 })

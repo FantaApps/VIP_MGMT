@@ -13,17 +13,7 @@ Page({
       url: "http://www.dianping.com/shop/126396111",
       pic: "../../images/ruoshui.png"
     }],
-    "navs": [
-      {
-        key: "score",
-        desc: "VIP积分",
-        verify: "jwc"
-      },{
-        key: "sale_summary",
-        desc: "销售成绩",
-        verify: "jwc"
-      }
-    ],
+    "navs" : app.globalData.nav,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   
@@ -51,101 +41,13 @@ Page({
       "remind": app.remind,
       "offline": app.offline,
     })
+    const token = wx.getStorageSync('openid');
+    app.globalData.token = token;
+    
   },
   bindGetUserInfo(e) {
     console.log(e.detail.userInfo)
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-    app.xh = wx.getStorageSync("xh");
-    app.name = wx.getStorageSync("name")
-    app.jwc = wx.getStorageSync("jwc");
-    app.user_token = app.user_token ? app.user_token : wx.getStorageSync("user_token")
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-    if (app.user_token) {
-      this.data.pull = true
-      this.getStuclass()
-    } else
-      wx.stopPullDownRefresh();
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
-  },
-  init: function(data = undefined) {
-    var that = this;
-    var not_flag = wx.getStorageSync("not_flag");
-    if (app.low_day && (not_flag == false)) {
-      // 开学前半个月不使用缓存
-      wx.removeStorageSync("stuclass");
-    }
-
-    if (data != undefined) {
-      /*
-      获取到服务器的版本后，初始化完毕
-      然后到index进行判断是否为新版本，如果是新版本，则清空缓存重新获取信息。
-     */
-      that.kb_version = data.version;
-      that.slides = data.slides;
-      if (that.kb_version != wx.getStorageSync("kb_version")) {
-        wx.removeStorageSync("stuclass"); //清空stuclass，重新进行课表获取。
-        wx.setStorageSync("kb_version", that.kb_version);
-      }
-      wx.setStorageSync("slides", that.slides);
-    } else {
-      that.kb_version = wx.getStorageSync("kb_version")
-      that.slides = wx.getStorageSync("slides")
-    }
-    if (app.user_token) {
-      var stuclass = wx.getStorageSync("stuclass");
-      if (stuclass == "" && app.offline == false) {
-        this.getStuclass(1)
-      } else {
-        this.getTodayClass(stuclass)
-      }
-    }
-    this.setData({
-      "notices": this.slides
-    })
-  },
+  },  
   /*跳转到登陆界面，待完善研究生登陆*/
   auth: function() {
     var type = "jwc"
@@ -153,112 +55,9 @@ Page({
       url: '/pages/login/login?type=' + type,
     })
   },
-  /* 获取课程表 */
-  getStuclass: function(options) {
-    var _this = this;
-    wx.showLoading({
-      title: '加载中',
-    })
-    this.setData({
-      "remind": "update"
-    })
-    wx.request({
-      url: app.server + "/kb",
-      data: app.jwc,
-      header: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      method: "POST",
-      success: function(res) {
-        if (res.data.status == "402") {
-          wx.showModal({
-            title: '密码错误',
-            content: "你或许在教务系统中修改了密码，请重新绑定",
-            showCancel: false,
-            success: function(res) {
-              wx.clearStorageSync();
-              app.user_token = ""
-              app.xh = "",
-                app.remind = "unauth"
-              wx.setStorageSync("version", app.version)
-              wx.reLaunch({
-                url: '/pages/login/login',
-              })
-            }
-          })
-        }
-        res = res.data
-        var stuclass = res.data;
-        wx.setStorageSync('stuclass', stuclass); // 缓存到本地
-        wx.setStorageSync("not_flag", !res.flag)
-        _this.getTodayClass(stuclass);
-        if (_this.data.pull) {
-          _this.data.pull = false
-          wx.stopPullDownRefresh()
-          app.remind = ""
-        }
-      },
-      fail: function(error) {
-        if (_this.data.pull) {
-          _this.data.pull = false
-          wx.stopPullDownRefresh()
-        }
-      },
-      complete: function(res) {
-        wx.hideLoading();
-      }
-    })
-  },
-  /* 获取今天要上的有哪些课 */
-  getTodayClass: function(stuclass) {
-    app.today = parseInt(new Date().getDay());
-    var today;
-    if (app.today == 0) {
-      app.today = 6
-      today = 6;
-    } else
-      today = app.today - 1 //数组从0开始的，
-    var todays = []
-    for (var cls in stuclass) { // 先遍历节
-      var today_class = stuclass[cls].classes[today]
-      if (Array.isArray(today_class)) // 如果是数组的话,那就是有课
-      {
-        var flag = false
-        for (var i = 0; i < today_class.length; i++) {
-          for (var j = 0, k = today_class[i].weeks.length; j < k; j++) {
-            if (app.week == today_class[i].weeks[j]) {
-              flag = true;
-              break
-            }
-          }
-          if (flag == true) { // 说明是该周的课，记录下来，break
-            if (!app.low_day && today_class[i].name.indexOf("未选中") != -1) // 大于15天，
-              continue
-            var todaydata = today_class[i]; // 找到这门课了
-            todays.push({
-              cls: todaydata,
-              classtime: todaydata.begin + "-" + (todaydata.num + todaydata.begin) + "节"
-            })
-            break
-          }
-        }
-      }
-    }
-    console.log(todays.length)
-    if (todays.length == 0) {
-      this.setData({
-        remind: "你今天没有课哦"
-      })
-    } else {
-      this.setData({
-        courses: todays,
-        remind: ""
-      })
-    }
-  },
   navigatetokb: function() {
     wx.navigateTo({
-      url: '/pages/core/sale_today/sale_today',
+      url: '/pages/core/sale_month/sale_month',
     })
   },
   submit: function(e) {

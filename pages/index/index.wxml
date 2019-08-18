@@ -9,7 +9,6 @@
 </swiper>
 
 <view class='container'>
-
   <view class='card' style='margin-top:-30rpx;'>
     <form bindsubmit="submit" report-submit="ture">
       <view class='navs'>
@@ -24,8 +23,7 @@
   </view>
 
   <view class='card'>
-    <view class='card-desc text-caption'>今日销售</view>
-
+    <view class='card-desc text-caption'>本月销售</view>
     <view wx:if="{{remind}}" class='card-content layout-column layout-center'>
       <button wx:if="{{remind == 'unauth'}}" class='remind-btn sc-button sc-outlined-btn ' bindtap="auth" sc-class="sc-btn sc-outlined-btn" flat>前去绑定账号</button>
       <block wx:else>
@@ -33,17 +31,17 @@
         <button class='remind-btn sc-button sc-outlined-btn ' bindtap="navigatetokb" sc-class="sc-btn sc-outlined-btn" flat>查看完整销售</button>
       </block>
     </view>
-
     <view wx:else class='card-content'>
       <view class='card-content layout-row layout-center-start'>
-        <button class='remind-btn sc-button sc-outlined-btn ' bindtap="navigatetokb" sc-class="sc-btn sc-outlined-btn" flat>今日销售</button>
+        <button class='remind-btn sc-button sc-outlined-btn ' bindtap="navigatetokb" sc-class="sc-btn sc-outlined-btn" flat>本月销售</button>
       </view>
     </view>
     <ad unit-id="adunit-ec3e3215c5407d2e"></ad>
-
   </view>
+
   <view class='headView'>
     <open-data class='icon' mode='aspectFit' type='userAvatarUrl'></open-data>
     <view class='icon'/>
   </view>
+
 </view>

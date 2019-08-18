@@ -1,9 +1,11 @@
 {
   "pages": [
+    "pages/core/user/user",
     "pages/index/index",
-    "pages/core/sale_today/sale_today",
+    "pages/core/sale_month/sale_month",
     "pages/core/score/score",
     "pages/core/sale_summary/sale_summary",
+    "pages/core/tot_summary/tot_summary",
     "pages/authorize/index"
   ],
   "window": {

@@ -1,0 +1,2 @@
+
+<button class='btn' bindtap='getOpenid' >授权登陆</button>

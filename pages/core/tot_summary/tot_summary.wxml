@@ -1,6 +1,7 @@
 
 <view class="table">
   <view class="tr bg-w">
+    <view class="th">VIP名字</view>
     <view class="th">年</view>
     <view class="th">月</view>
     <view class="th">销售量</view>
@@ -8,12 +9,14 @@
   </view>
   <block wx:for="{{listData}}" wx:key="{{code}}">
     <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
+      <view class="td">{{item.userName}}</view>
       <view class="td">{{item.year}}</view>
       <view class="td">{{item.month}}</view>
       <view class="td">{{item.tot_cnt}}</view>
       <view class="td">{{item.tot_price}}</view>
     </view>
     <view class="tr" wx:else>
+      <view class="td">{{item.userName}}</view>
       <view class="td">{{item.year}}</view>
       <view class="td">{{item.month}}</view>
       <view class="td">{{item.tot_cnt}}</view>

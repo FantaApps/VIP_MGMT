@@ -9,12 +9,7 @@ Page({
     jd: NaN,
     aver_score: NaN,
     total_xf: NaN,
-    listData: [
-      { "code": "珠宝顾问", "text": "每月到店参加分享活动及专业学习", "type": "统一零售价27%分红，团队销售总额5%奖金" },
-      { "code": "珠宝经理", "text": "发展5名以上珠宝顾问", "type": "统一零售价27%分红，团队销售总额8%奖金" },
-      { "code": "珠宝总监", "text": "发展30名以上珠宝顾问", "type": "统一零售价27%分红，带领团队销售总额8%奖金" },
-      { "code": "珠宝高级合伙人", "text": "发展50名义上珠宝顾问", "type": "统一零售价27%分红，带领团队销售总额8%奖金，项目干股5%分红" }
-    ]
+    
   },
 
   /**
@@ -23,31 +18,25 @@ Page({
   onLoad: function(options) {
     let that = this
     wx.request({
-      url: app.server + "/get_file",
+      url: app.server + "/v1/user",
       data: {
-        project: 'diamond',
-        key: app.globalData.token,
-        secondary: 'vipinfo',
-        tag: "KV"
+        project: '若水藏真',
+        weChatId: app.globalData.token
       },
-      method: 'POST',
+      method: 'GET',
       header: {
         'content-type': 'application/json' // 默认值
       },
       success(res) {
+        var obj = res.data.data.listUsers[0]
         
-        var json = res.data.replace("\[", "").replace("\]", "").replace("\'", "").replace("\'", "")
-        console.log(json)
-        var obj = JSON.parse(json)
-
-        if (obj.vipType == 'ADVANCED') {
-          obj.vipType = "珠宝经理";
-        }
         that.setData({
-          'xh': obj.vipID,
-          'jd': obj.vipType,
-          'total_xf': obj.developedVIP,
-          'aver_score': obj.score
+          'name': obj.name,
+          'id': obj.iD,
+          'total_sale': obj.total_sale,
+          'monthly_sale': obj.monthly_sale,
+          'vip_developed': obj.vipDeveloped,
+          'vip_type' : obj.vipType
         })
       },
       fail(res) {

@@ -1,0 +1,6 @@
+.btn {
+  width: 60%;
+  margin-top: 50%;
+  background-color: #5BC236;
+  color: #FFF;
+}
