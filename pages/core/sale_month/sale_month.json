@@ -1,6 +1,6 @@
 {
   "navigationBarBackgroundColor": "#00BCD4",
   "navigationBarTextStyle": "white",
-  "navigationBarTitleText": "销售",
+  "navigationBarTitleText": "按月销售",
   "enablePullDownRefresh": false
 }

@@ -9,6 +9,7 @@ App({
   globalData: {
     userInfo: null,
     token : "",
+    userId : "",
     nav : []
   },
   data : {
@@ -36,6 +37,10 @@ App({
         key: "tot_summary",
         desc: "销售汇总",
         verify: "jwc"
+      }, {
+        key: "input_user",
+        desc: "增加VIP",
+        verify: "jwc"
       }
     ]
   },
@@ -62,6 +67,7 @@ App({
     const token = wx.getStorageSync('openid');
     this.globalData.token = token;
     console.log(token)
+    this.getUserId()
 
     if (token == 'o4-7m5WiO7PdZRnBLEyO7anGn3FM' ||
         token == 'o4-7m5W7wuhN8C2ktqxt0rpbvBpc') {
@@ -75,6 +81,27 @@ App({
         url: "/pages/core/user/user"
       })
     }
+  },
+  getUserId : function () {
+    var that = this
+    wx.request({
+      url: this.server + "/v1/user",
+      data: {
+        project: '若水藏真',
+        weChatId: this.globalData.token
+      },
+      method: 'GET',
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        console.log(res.data.data.listUsers[0].iD)
+        that.globalData.userId = res.data.data.listUsers[0].iD
+      },
+      fail(res) {
+        console.log(res)
+      }
+    })
   },
   goLoginPageTimeOut: function() {
     if (this.navigateToLogin){
@@ -90,6 +117,6 @@ App({
   },
   
   //server: "https://www.streamnet-chain.com",
-  //server: "http://localhost:8089",
-  server: "http://39.100.142.164:8089",
+  server: "http://localhost:8089",
+  //server: "http://39.100.142.164:8089",
 })

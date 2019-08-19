@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/core/user/user",
+    "pages/core/input_user/input_user",
     "pages/index/index",
     "pages/core/sale_month/sale_month",
     "pages/core/score/score",

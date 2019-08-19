@@ -1,0 +1,58 @@
+<form report-submit="true" bindsubmit="save">
+  <view class="info">
+
+    <view class="info-item first title">
+      <view class="label">微信号：</view>
+      <input type="text" placeholder="请输入微信号" placeholder-class="placeholder" bindinput="inputTitle" name="wechatID" value="{{wechatID}}" />
+      <icon class="clear" type="clear" size="15" wx:if="{{!titleEmpty}}" catchtap="clearTitle" />
+    </view>
+
+    <view class="info-item first title">
+      <view class="label">名字：</view>
+      <input type="text" placeholder="请输入名字" placeholder-class="placeholder" bindinput="inputTitle" name="userName" value="{{userName}}" />
+      <icon class="clear" type="clear" size="15" wx:if="{{!titleEmpty}}" catchtap="clearTitle" />
+    </view>
+
+    <view class="info-item first title">
+      <view class="label">电话：</view>
+      <input type="text" placeholder="请输入电话" placeholder-class="placeholder" bindinput="inputTitle" name="phoneNum" value="{{phoneNum}}" />
+      <icon class="clear" type="clear" size="15" wx:if="{{!titleEmpty}}" catchtap="clearTitle" />
+    </view>
+
+    <view class="info-item first title">
+      <view class="label">电邮：</view>
+      <input type="text" placeholder="请输入电邮" placeholder-class="placeholder" bindinput="inputTitle" name="email" value="{{email}}" />
+      <icon class="clear" type="clear" size="15" wx:if="{{!titleEmpty}}" catchtap="clearTitle" />
+    </view>
+
+    <view class="info-item first title">
+      <view class="label">地址</view>
+      <input type="text" placeholder="请输入地址" placeholder-class="placeholder" bindinput="inputTitle" name="address" value="{{address}}" />
+      <icon class="clear" type="clear" size="15" wx:if="{{!titleEmpty}}" catchtap="clearTitle" />
+    </view>
+
+    <!--
+    <view class="info-item content">
+      <view class="label">内容</view>
+      <textarea placeholder="请输入内容" placeholder-class="placeholder" bindinput="inputContent" name="content" value="{{content}}" maxlength="-1" auto-height="true" />
+      <icon class="clear" type="clear" size="15" wx:if="{{!contentEmpty}}" catchtap="clearContent" />
+    </view>
+ -->
+
+  </view>
+  <button class="button" form-type="submit">保存</button>
+
+  <view class="section">
+    <view class="section__title">您输入的微信号是：{{wechatID}}</view>
+    <view class="section__title">您输入的名字是：{{userName}}</view>
+    <view class="section__title">您输入的电话是：{{phoneNum}}</view>
+    <view class="section__title">您输入的电邮是：{{email}}</view>
+    <view class="section__title">您输入的地址是：{{address}}</view>
+  </view>
+
+</form>
+
+<button bindtap="submitData">点击确认</button>
+<view class="section">
+<view class="section__title">              {{result}}</view>
+</view>
