@@ -2,6 +2,8 @@
   "pages": [
     "pages/core/user/user",
     "pages/core/input_user/input_user",
+    "pages/core/verify_user/verify_user",
+    "pages/core/order/order",
     "pages/index/index",
     "pages/core/sale_month/sale_month",
     "pages/core/score/score",

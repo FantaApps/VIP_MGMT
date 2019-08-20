@@ -22,6 +22,14 @@ App({
         key: "sale_summary",
         desc: "销售成绩",
         verify: "jwc"
+      }, {
+        key: "input_user",
+        desc: "增加VIP",
+        verify: "jwc"
+      }, {
+        key: "order",
+        desc: "下单",
+        verify: "jwc"
       }
     ],
     "navs1": [
@@ -40,6 +48,14 @@ App({
       }, {
         key: "input_user",
         desc: "增加VIP",
+        verify: "jwc"
+      }, {
+        key: "verify_user",
+        desc: "确认VIP",
+        verify: "jwc"
+      }, {
+        key: "order",
+        desc: "下单",
         verify: "jwc"
       }
     ]
