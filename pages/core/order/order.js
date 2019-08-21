@@ -92,6 +92,11 @@ Page({
       },
       success(res) {
         console.log("success")
+        that.setData(
+          {
+            'result': "成功"
+          }
+        )
       },
       fail(res) {
         console.log(res)

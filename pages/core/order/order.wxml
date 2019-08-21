@@ -34,4 +34,7 @@ form自带有提交和重置按钮，会自动获取表单中所有控件值的�
     <view class="btn-area">
       <button form-type="submit">提交</button>
     </view>
+<view class="section">
+<view class="section__title">              {{result}}</view>
+</view>
   </form>
