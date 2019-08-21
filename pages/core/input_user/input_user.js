@@ -74,6 +74,7 @@ Page({
         phoneNum: this.data.phoneNum,
         email: this.data.email,
         address: this.data.address,
+        status: "INITIATED",
         createdAt : utc
       },
       method: 'POST',

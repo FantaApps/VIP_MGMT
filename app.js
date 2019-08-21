@@ -57,6 +57,10 @@ App({
         key: "order",
         desc: "下单",
         verify: "jwc"
+      }, {
+        key: "verify_order",
+        desc: "确认订单",
+        verify: "jwc"
       }
     ]
   },

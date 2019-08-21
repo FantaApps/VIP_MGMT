@@ -1,0 +1,36 @@
+<!--pages/index/Component/FormM/FormM.wxml-->
+<!--这里用form，name=“nameName1”可以作为form的属性进行 
+（e.detail.value.nameName1）调用,
+form自带有提交和重置按钮，会自动获取表单中所有控件值的改变-->
+<form class="page__bd" bindsubmit="formSubmit" bindreset="formReset">
+    <view class="section">
+      <view class="section__title">订单号:</view>
+      <picker name="areaPicker" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+        <view class="picker">
+          当前选择：{{array[index]}}
+        </view>
+      </picker>
+    </view>
+<view class="section">
+    <view class="section__title">下单人：{{userName}}</view>
+    <view class="section__title">订单号：{{orderId}}</view>
+    <view class="section__title">类型：{{productType}}</view>
+    <view class="section__title">名字：{{productName}}</view>
+    <view class="section__title">价钱：{{price}}</view>
+    <view class="section__title">附加条件：{{description}}</view>
+  </view>
+
+    <view class="section section_gap">
+      <view class="section__title">已发货且收款</view>
+      <switch name="switch" bindchange="switch2Change"/>
+    </view>
+
+
+
+    <view class="btn-area">
+      <button form-type="submit" bindtap="submit">提交</button>
+    </view>
+<view class="section">
+<view class="section__title">              {{result}}</view>
+</view>
+  </form>
