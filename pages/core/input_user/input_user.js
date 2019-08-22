@@ -7,6 +7,7 @@ Page({
     address: '',
     email : '',
     userId : '',
+    result : '',
     titleEmpty: true,
     contentEmpty: true
   },
@@ -61,7 +62,24 @@ Page({
     console.log(this.data)
     // 提交请求
   },
+  checkNull : function () {
+    if (this.data.wechatID == "" ||
+      app.globalData.userId == "" ||
+      this.data.userName == "" ||
+      this.data.phoneNum == "" || 
+      this.data.email == "" ||
+      this.data.address == "") {
+        return false;
+    }
+    return true
+  },
   submitData : function() {
+    if (!this.checkNull()) {
+      this.setData({
+        'result': '输入数据不能为空'
+      })
+      return false
+    }
     var utc = new Date().toJSON().slice(0, 24);
     var that = this
     wx.request({

@@ -70,11 +70,24 @@ Page({
       }
     })
   },
-  
+  checkNull: function () {
+    if (this.data.productDescription == "") {
+      return false;
+    }
+    return true
+  },
   //表单提交按钮
   formSubmit: function (e) {
     var utc = new Date().toJSON().slice(0, 24);
     var that = this
+
+    if (!this.checkNull()) {
+      this.setData({
+        'result': '输入数据不能为空'
+      })
+      return false
+    }
+
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
     wx.request({
       url: app.server + "/v1/product/purchase",
