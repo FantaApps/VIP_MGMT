@@ -91,7 +91,7 @@ Page({
     console.log("confirmed")
     this.setData(
       {
-        'status': 'CONFIRMED'
+        'status': 'COMPLETED'
       }
     )
   },
