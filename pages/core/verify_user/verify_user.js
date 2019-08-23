@@ -1,3 +1,4 @@
+const WXAPI = require('../../util/wxapi')
 var app = getApp()
 
 Page({
@@ -109,35 +110,21 @@ Page({
   submit : function() {
     var that = this
     var utc = new Date().toJSON().slice(0, 24);
-    wx.request({
-      url: app.server + "/v1/user/add",
-      data: {
-        userName: that.data.userName,
-        weChatId: that.data.weChatId,
-        project: '若水藏真',
-        phoneNum: that.data.phoneNum,
-        email: that.data.email,
-        address: that.data.address,
-        status: that.data.status,
-        fromVipId: that.data.fromVipId,
-        toId : that.data.toId,
-        createdAt: utc
-      },
-      method: 'POST',
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success(res) {
-        console.log('success')
-        that.setData(
-          {
-            'result' : "成功"
-          }
-        )
-      },
-      fail(res) {
-        console.log(res)
-      }
+
+    var data = {
+      "project": "若水藏真",
+      "status": "CONFIRMED",
+      "fromUserId": that.data.fromVipId,
+      "toUserId": that.data.toId,
+      "createdAt": utc
+    }
+
+    WXAPI.updateVipDevelop(data).then(function (res) {
+      that.setData(
+        {
+          'result': "成功"
+        }
+      )
     })
   }
 })

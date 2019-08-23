@@ -1,14 +1,18 @@
 <form report-submit="true" bindsubmit="save">
   <view class="info">
 
-    <view class="info-item first title">
-      <view class="label">微信号：</view>
-      <input type="text" placeholder="请输入微信号" placeholder-class="placeholder" bindinput="inputTitle" name="wechatID" value="{{wechatID}}" />
-    </view>
+     <view class="section">
+      <view class="section__title">名字:</view>
+      <picker name="areaPicker" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+        <view class="picker">
+          当前选择：{{array[index]}}
+        </view>
+      </picker>
+    </view>
 
     <view class="info-item first title">
       <view class="label">名字：</view>
-      <input type="text" placeholder="请输入名字" placeholder-class="placeholder" bindinput="inputTitle" name="userName" value="{{userName}}" />
+      <input type="text" placeholder="{{userName}}" placeholder-class="placeholder" bindinput="inputTitle" name="userName" value="{{userName}}" />
     </view>
 
     <view class="info-item first title">
@@ -30,7 +34,6 @@
   <button class="button" form-type="submit">保存</button>
 
   <view class="section">
-    <view class="section__title">您输入的微信号是：{{wechatID}}</view>
     <view class="section__title">您输入的名字是：{{userName}}</view>
     <view class="section__title">您输入的电话是：{{phoneNum}}</view>
     <view class="section__title">您输入的电邮是：{{email}}</view>

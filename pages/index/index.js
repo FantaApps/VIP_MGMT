@@ -1,5 +1,5 @@
 //index.js
-//获取应用实例
+const WXAPI = require('../util/wxapi')
 const app = getApp()
 
 Page({
@@ -28,9 +28,22 @@ Page({
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称
           wx.getUserInfo({
             success: function (res) {
-              
               app.globalData.userInfo = res.userInfo
               console.log(app.globalData.userInfo)
+              const token = wx.getStorageSync('openid');
+              app.globalData.token = token;
+              // sync to DB
+              var addUserData = {
+                "userName": res.userInfo.nickName,
+                "weChatId": token,
+                "project" : "若水藏真",
+                "phoneNum" : '',
+                "email" : '',
+                "address" : '',
+                "status" : 'ADDED',
+                "fromVipId" : -1
+              }
+              WXAPI.addUserAccount(addUserData)
             }
           })
         }
@@ -41,19 +54,11 @@ Page({
       "remind": app.remind,
       "offline": app.offline,
     })
-    const token = wx.getStorageSync('openid');
-    app.globalData.token = token;
+    
     
   },
   bindGetUserInfo(e) {
     console.log(e.detail.userInfo)
-  },  
-  /*跳转到登陆界面，待完善研究生登陆*/
-  auth: function() {
-    var type = "jwc"
-    wx.navigateTo({
-      url: '/pages/login/login?type=' + type,
-    })
   },
   navigatetokb: function() {
     wx.navigateTo({

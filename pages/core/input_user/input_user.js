@@ -1,8 +1,13 @@
+const WXAPI = require('../../util/wxapi')
+
 var app = getApp()
 Page({
   data: {
+    array : [],
     wechatID: '',
+    listUsers: [],
     userName: '',
+    fromUserId: '',
     phoneNum : '',
     address: '',
     email : '',
@@ -12,16 +17,26 @@ Page({
     contentEmpty: true
   },
   onLoad: function (opt) {
-    // 设置初始值
-    /*this.setData({
-      wechatId: opt.wechatId,
-      //name: opt.name
+    var that = this
+    var data = {
+      "project" : "若水藏真"
+    }
+    WXAPI.getUserAdded(data).then(function (res) {
+      var lstUsers = res.data.listUsers
+      var arr = []
+      for(var i=0; i<lstUsers.length; i++) {
+        arr.push(lstUsers[i].name)
+      }
+      that.setData(
+        {
+          'index': 0,
+          'array' : arr,
+          'userName' : lstUsers[0].name,
+          'wechatID': arr[0],
+          'listUsers' : lstUsers
+        }
+      )
     })
-    console.log(this.data.wechatId)
-    this.setData({
-      titleEmpty: this.data.title),
-      contentEmpty: util.isTextEmpty(this.data.content)
-    })*/
   },
   inputTitle: function (e) {
     this.setData({
@@ -47,17 +62,18 @@ Page({
   },
   save: function (e) {
     console.log(e)
-    var wechatID = e.detail.value.wechatID.trim();
     var userName = e.detail.value.userName.trim();
     var email = e.detail.value.email.trim();
     var phoneNum = e.detail.value.phoneNum.trim();
     var address = e.detail.value.address.trim();
+    var wid = this.data.listUsers[this.data.index].weChatID
+    console.log(wid)
     this.setData({
-      wechatID : wechatID,
       userName : userName,
       email : email,
       phoneNum : phoneNum,
-      address : address
+      address : address,
+      wechatID: wid
     })
     console.log(this.data)
     // 提交请求
@@ -80,38 +96,53 @@ Page({
       })
       return false
     }
+
     var utc = new Date().toJSON().slice(0, 24);
     var that = this
-    wx.request({
-      url: app.server + "/v1/user/add",
-      data: {
+
+    var data = {
+      project: '若水藏真',
+      weChatId: that.data.wechatID,
+      userName: that.data.userName,
+      phoneNum: that.data.phoneNum,
+      email: that.data.email,
+      address: that.data.address,
+      status: "GRANTED",
+      createdAt: utc
+    }
+    WXAPI.updateUserAccount(data).then(function (res) {
+      console.log(res.data.userId)
+      console.log(res.data)
+      that.setData({
+        'result': '成功',
+        'userId': res.data.userId
+      })
+
+      var data1 = {
         project: '若水藏真',
-        weChatId: this.data.wechatID,
-        fromVipId: app.globalData.userId,
-        userName: this.data.userName,
-        phoneNum: this.data.phoneNum,
-        email: this.data.email,
-        address: this.data.address,
+        fromUserId: app.globalData.userId,
+        toUserId: res.data.userId,
         status: "INITIATED",
-        createdAt : utc
-      },
-      method: 'POST',
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success(res) {
-        console.log(res.data.data.userId)
-        that.setData({
-          'result': '成功',
-          'userId': res.data.data.userId
-        })
-      },
-      fail(res) {
+        createdAt: utc
+      }
+
+      WXAPI.addVipDevelop(data1).then(function (res) {
         console.log(res)
         that.setData({
-          'result': '失败'
+          'result': '成功'
         })
-      }
+      })
     })
- }
+  },
+  bindPickerChange: function (e) {
+    var that = this
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    var idx = parseInt(e.detail.value)
+
+    that.setData({
+      'weChatId': that.data.listUsers[idx].weChatID,
+      'userName': that.data.listUsers[idx].name,
+      'index': idx
+    })
+  },
 })
