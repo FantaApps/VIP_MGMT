@@ -32,6 +32,7 @@ Page({
               console.log(app.globalData.userInfo)
               const token = wx.getStorageSync('openid');
               app.globalData.token = token;
+              var utc = new Date().toJSON().slice(0, 24);
               // sync to DB
               var addUserData = {
                 "userName": res.userInfo.nickName,
@@ -41,7 +42,8 @@ Page({
                 "email" : '',
                 "address" : '',
                 "status" : 'ADDED',
-                "fromVipId" : -1
+                "fromVipId" : -1,
+                "createdAt": utc
               }
               WXAPI.addUserAccount(addUserData)
             }
