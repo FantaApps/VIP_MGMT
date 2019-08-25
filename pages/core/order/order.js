@@ -28,6 +28,7 @@ Page({
   },
   onLoad: function (options) {
     let that = this
+    app.getUserId()
     wx.request({
       url: app.server + "/v1/product",
       data: {
@@ -89,6 +90,7 @@ Page({
     }
 
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    app.getUserId()
     wx.request({
       url: app.server + "/v1/product/purchase",
       data: {

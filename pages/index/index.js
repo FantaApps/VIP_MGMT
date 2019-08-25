@@ -22,6 +22,7 @@ Page({
    */
   onLoad: function(options) {
     // 查看是否授权
+    app.getUserId()
     wx.getSetting({
       success(res) {
         if (res.authSetting['scope.userInfo']) {
@@ -48,7 +49,16 @@ Page({
               WXAPI.addUserAccount(addUserData)
             }
           })
+        } else {
+          wx.navigateTo({
+            url: '/pages/core/user/user',
+          })
         }
+      },
+      fail(res) {
+        wx.navigateTo({
+          url: '/pages/core/user/user',
+        })
       }
     })
     var that = this

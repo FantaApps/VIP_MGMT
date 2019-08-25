@@ -87,7 +87,6 @@ App({
     const token = wx.getStorageSync('openid');
     this.globalData.token = token;
     console.log(token)
-    this.getUserId()
 
     if (token == 'o4-7m5WiO7PdZRnBLEyO7anGn3FM' ||
         token == 'o4-7m5W7wuhN8C2ktqxt0rpbvBpc') {
@@ -136,7 +135,7 @@ App({
     }, 1000)
   },
   
-  //server: "https://www.streamnet-chain.com",
-  server: "http://localhost:8089",
+  server: "https://www.streamnet-chain.com",
+  //server: "http://localhost:8089",
   //server: "http://39.100.142.164:8089",
 })

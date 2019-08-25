@@ -1,2 +1,2 @@
 
-<button class='btn' bindtap='getOpenid' >授权登陆</button>
+<button class='btn' bindtap='getOpenid' open-type="getUserInfo">授权登陆</button>

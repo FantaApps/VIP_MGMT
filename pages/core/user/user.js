@@ -9,7 +9,8 @@ Page(
   }, // 获取用户openid
   getOpenid: function() {  
     let that = this;  //获取openid不需要授权
-    wx.login({   success: function(res) {    //请求自己后台获取用户openid
+    wx.login({   
+      success: function(res) {    //请求自己后台获取用户openid
       wx.request(
       {     
         url: 'https://30paotui.com/user/wechat',     
@@ -29,8 +30,30 @@ Page(
     }
   })
 
-  wx.navigateTo({
-    url: '/pages/index/index',
+  wx.getSetting({
+    success(res) {
+      if (!res.authSetting['scope.userInfo']) {
+        wx.authorize({
+          scope: 'scope.userInfo',
+          success() {
+            wx.getUserInfo()
+          },
+          fail(res) {
+            console.log(res)
+          }
+        })
+        wx.navigateTo({
+          url: '/pages/index/index',
+        })
+      } else {
+        wx.navigateTo({
+          url: '/pages/index/index',
+        })
+      }
+    },
+    fail(res) {
+      console.log(res)
+    }
   })
  }
 })
