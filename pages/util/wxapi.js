@@ -63,5 +63,9 @@ module.exports = {
   },
   updateVipDevelop: (data) => {
     return request('/v1/user/develop/update', 'PUT', data)
+  },
+  addProduct: (data) => {
+    console.log(data)
+    return request('/v1/product/add', 'POST', data)
   }
 }

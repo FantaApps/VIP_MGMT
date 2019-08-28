@@ -10,6 +10,7 @@
     "pages/core/score/score",
     "pages/core/sale_summary/sale_summary",
     "pages/core/tot_summary/tot_summary",
+    "pages/core/inventory/inventory",
     "pages/authorize/index"
   ],
   "window": {

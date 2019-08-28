@@ -61,6 +61,10 @@ App({
         key: "verify_order",
         desc: "确认订单",
         verify: "jwc"
+      }, {
+        key: "inventory",
+        desc: "增加库存",
+        verify: "jwc"
       }
     ]
   },
@@ -135,7 +139,7 @@ App({
     }, 1000)
   },
   
-  server: "https://www.streamnet-chain.com",
-  //server: "http://localhost:8089",
+  //server: "https://www.streamnet-chain.com",
+  server: "http://localhost:8089",
   //server: "http://39.100.142.164:8089",
 })
