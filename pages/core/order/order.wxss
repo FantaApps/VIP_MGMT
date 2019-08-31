@@ -1,0 +1,11 @@
+.setting{
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  justify-content: left; 
+}
+.goods-pic {
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+}

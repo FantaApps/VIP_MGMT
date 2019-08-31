@@ -16,6 +16,7 @@ Page({
     index1 : 0,
     date: '2016-12-20',
     time: '11:19',
+    pic: '',
     allValue: ''
   },
   getProductInfo: function (lst, type, name) {
@@ -62,7 +63,8 @@ Page({
             'productType': type,
             'productName': name,
             'productId': productInfo.iD,
-            'price' : productInfo.product_price
+            'price' : productInfo.product_price,
+            'pic': productInfo.image_link
           }
         )
       },
@@ -146,7 +148,8 @@ Page({
       'productType': type,
       'productName': name,
       'productId': productInfo.iD,
-      'price': productInfo.product_price
+      'price': productInfo.product_price,
+      'pic': productInfo.image_link
     })
   },
   bindPickerChangeName : function(e) {
@@ -159,7 +162,8 @@ Page({
       index1: e.detail.value,
       'productName': name,
       'productId': productInfo.iD,
-      'price': productInfo.product_price
+      'price': productInfo.product_price,
+      'pic': productInfo.image_link
     })
   },
 

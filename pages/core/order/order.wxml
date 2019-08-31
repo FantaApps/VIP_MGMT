@@ -20,8 +20,9 @@ form自带有提交和重置按钮，会自动获取表单中所有控件值的�
           当前选择：{{array_product[index1]}}
         </view>
       </picker>
-    </view>
+   </view>
 <view class="section">
+    <image class='goods-pic' mode='scaleToFill' lazy-load="true" src="{{pic}}"></image>
     <view class="section__title">商品类型：{{productType}}</view>
     <view class="section__title">商品名字：{{productName}}</view>
     <view class="section__title">价钱：{{price}}</view>
