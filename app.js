@@ -54,7 +54,7 @@ App({
         desc: "确认VIP",
         verify: "jwc"
       }, {
-        key: "order",
+        key: "search",
         desc: "下单",
         verify: "jwc"
       }, {
@@ -141,5 +141,6 @@ App({
   
   //server: "https://www.streamnet-chain.com",
   server: "http://localhost:8089",
+  //server: "http://150.109.145.30:8089",
   //server: "http://39.100.142.164:8089",
 })

@@ -3,6 +3,7 @@
 @import "scui/assets/font-icon/material.wxss";
 @import "scui/assets/font-icon/iconfont.wxss";
 @import "scui/assets/font-icon/iconzuoyou.wxss";
+@import 'weui/weui.wxss';
 
 .container {
   height: 100%;
@@ -91,4 +92,12 @@ page {
   padding: 0 32rpx;
   font-size: 28rpx;
   border-radius: 4rpx;
+}
+
+.wxParse-img {
+  display: block !important;
+}
+.space {
+  height:20rpx;
+  background-color:#e4e4e4;
 }

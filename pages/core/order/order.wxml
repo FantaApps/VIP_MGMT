@@ -4,7 +4,7 @@
 form自带有提交和重置按钮，会自动获取表单中所有控件值的改变-->
 <form class="page__bd" bindsubmit="formSubmit" bindreset="formReset">
 
-
+<!--
     <view class="section">
       <view class="section__title">商品类型</view>
       <picker name="areaPicker" bindchange="bindPickerChangeType" value="{{index}}" range="{{array_type}}">
@@ -13,19 +13,23 @@ form自带有提交和重置按钮，会自动获取表单中所有控件值的�
         </view>
       </picker>
     </view>
-  <view class="section">
-      <view class="section__title">商品型号</view>
-      <picker name="areaPicker" bindchange="bindPickerChangeName" value="{{index1}}" range="{{array_product}}">
-        <view class="picker">
-          当前选择：{{array_product[index1]}}
-        </view>
-      </picker>
-   </view>
+  
+-->
 <view class="section">
     <image class='goods-pic' mode='scaleToFill' lazy-load="true" src="{{pic}}"></image>
     <view class="section__title">商品类型：{{productType}}</view>
     <view class="section__title">商品名字：{{productName}}</view>
     <view class="section__title">价钱：{{price}}</view>
+    <view class="section">
+    
+
+  <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+    <view class="picker">
+      选择下单人：{{array[index]}}
+    </view>
+  </picker>
+</view>
+
     <view class="info-item content">
       <view class="label">附加需求</view>
       <textarea placeholder="请输入细节" placeholder-class="placeholder" bindinput="inputContent" name="content" value="{{productDescription}}" maxlength="-1" auto-height="true" />

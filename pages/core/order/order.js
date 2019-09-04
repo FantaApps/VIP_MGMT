@@ -1,10 +1,13 @@
 var app = getApp()
+const WXAPI = require('../../../wxapi/main')
+const JIYOU = require('../../util/wxapi')
 
 Page({
   //初始化数据
   data: {
-    array_type: [],
-    array_product: [],
+    array : [],
+    userInfo : [],
+    index : 0,
     productNameMap: [],
     productList : [],
     productType : '',
@@ -28,49 +31,61 @@ Page({
     }
   },
   onLoad: function (options) {
+    console.log(options)
     let that = this
-    app.getUserId()
-    wx.request({
-      url: app.server + "/v1/product",
-      data: {
-        project: '若水藏真',
-        productType : '',
-        productName : ''
-      },
-      method: 'GET',
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success(res) {
-        console.log(res.data.data.productNameMap)
-        var arr = [];
-        Object.keys(res.data.data.productNameMap).forEach(function (key) {
-          arr.push(key)
-        });
-        console.log(res.data.data)
-        var type = arr[0]
-        var name = res.data.data.productNameMap[arr[0]][0]
-        var lst = res.data.data.listProduct
-
-        var productInfo = that.getProductInfo(lst, type, name)
-        console.log(productInfo)
-        that.setData (
+    var userId = app.getUserId()
+    console.log(userId)
+    WXAPI.goodsDetail(options.id).then(function (res) {
+      if(res.code == 0) {
+        that.setData(
           {
-            'array_type' : arr,
-            'array_product': res.data.data.productNameMap[arr[0]],
-            'productNameMap': res.data.data.productNameMap,
-            'productList' : lst,
-            'productType': type,
-            'productName': name,
-            'productId': productInfo.iD,
-            'price' : productInfo.product_price,
-            'pic': productInfo.image_link
+            "productType" : res.data.category.name,
+            "productName" : res.data.basicInfo.name,
+            "price" : res.data.basicInfo.originalPrice,
+            "pic" : res.data.basicInfo.pic
           }
         )
-      },
-      fail(res) {
-        console.log(res)
+        that.getProductId()
       }
+    })
+    that.getUserAdded()
+    
+  },
+  getProductId : function () {
+    var that = this
+    JIYOU.getProductId(
+      {
+        project : "若水藏真",
+        productType : this.data.productType,
+        productName : this.data.productName
+      }
+    ).then(function (res) {
+      that.setData(
+        {
+          "productId" : res.data.listProduct[0].iD
+        }
+      )
+    })
+  },
+  getUserAdded : function () {
+    var that = this
+    JIYOU.getUserGranted(
+      {
+        project : "若水藏真"
+      }
+    ).then(function (res) {
+      console.log(res)
+      var arr = []
+      for (var i=0; i<res.data.listUsers.length; i++) {
+        var name = res.data.listUsers[i].name
+        arr.push(name)
+      }
+      that.setData(
+        {
+          "array" : arr,
+          "userInfo": res.data.listUsers
+        }
+      )
     })
   },
   checkNull: function () {
@@ -98,7 +113,7 @@ Page({
       data: {
         project: '若水藏真',
         product_id: that.data.productId,
-        user_id: app.globalData.userId,
+        user_id: that.data.userInfo[that.data.index].iD,
         description: that.data.productDescription,
         status: 'INITIATED',
         sale_time: utc
@@ -133,38 +148,15 @@ Page({
     })
   },
   //---------------------与选择器相关的方法
-  //地区选择
-  bindPickerChangeType: function (e) {
+  
+  bindPickerChange : function(e) {
     var that = this
     console.log('picker发送选择改变，携带值为', e.detail.value)
-    var type = this.data.array_type[e.detail.value] 
-    var arr_prod = this.data.productNameMap[this.data.array_type[e.detail.value]]
-    var name = arr_prod[0]
-    var productInfo = that.getProductInfo(that.data.productList, type, name)
-    that.setData({
-      index: e.detail.value,
-      index1 : 0,
-      'array_product': arr_prod,
-      'productType': type,
-      'productName': name,
-      'productId': productInfo.iD,
-      'price': productInfo.product_price,
-      'pic': productInfo.image_link
-    })
-  },
-  bindPickerChangeName : function(e) {
-    var that = this
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    
-    var name = that.data.array_product[e.detail.value]
-    var productInfo = that.getProductInfo(that.data.productList, that.data.productType, name)
-    that.setData({
-      index1: e.detail.value,
-      'productName': name,
-      'productId': productInfo.iD,
-      'price': productInfo.product_price,
-      'pic': productInfo.image_link
-    })
+    that.setData(
+      {
+        "index": e.detail.value
+      }
+    )
   },
 
 })

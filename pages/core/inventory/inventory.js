@@ -1,10 +1,8 @@
 import { promisify } from '../../utils/promise.util'
 import { $init, $digest } from '../../utils/common.util'
-//import { createQuestion } from '../../services/question.service'
-//import config from '../../config'
-const WXAPI = require('../../util/wxapi')
+const JIYOU = require('../../util/wxapi')
+const WXAPI = require('apifm-wxapi')
 var app = getApp()
-
 const wxUploadFile = promisify(wx.uploadFile)
 
 Page({
@@ -114,7 +112,7 @@ Page({
         console.log(">>>> upload images error:", err)
       }).then(urls => {
         var utc = new Date().toJSON().slice(0, 24);
-        return WXAPI.addProduct(
+        return JIYOU.addProduct(
           {
             "product_type" : that.data.type,
             "product_name" : that.data.name,

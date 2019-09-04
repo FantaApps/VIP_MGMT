@@ -55,6 +55,9 @@ module.exports = {
   getUserAdded : (data) => {
     return request('/v1/user/added', 'GET', data)
   },
+  getUserGranted: (data) => {
+    return request('/v1/user/granted', 'GET', data)
+  },
   updateUserAccount: (data) => {
     return request('/v1/user/update', 'PUT', data)
   },
@@ -67,5 +70,9 @@ module.exports = {
   addProduct: (data) => {
     console.log(data)
     return request('/v1/product/add', 'POST', data)
+  },
+  getProductId : (data) => {
+    console.log(data)
+    return request('/v1/product', 'GET', data)
   }
 }

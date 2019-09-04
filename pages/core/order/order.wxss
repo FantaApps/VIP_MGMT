@@ -5,7 +5,5 @@
   justify-content: left; 
 }
 .goods-pic {
-  width: 80px;
-  height: 80px;
   flex-shrink: 0;
 }
