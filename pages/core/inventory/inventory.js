@@ -124,21 +124,10 @@ Page({
             
           }
         )
-        //console.log(urls)
-        //return createQuestion({
-        //  title: title,
-        //  content: content,
-        //  images: urls
-        //})
       }).then(res => {
-        //const pages = getCurrentPages();
-        //const currPage = pages[pages.length - 1];
-        //const prevPage = pages[pages.length - 2];
-
-        //prevPage.data.questions.unshift(res)
-        //$digest(prevPage)
-
-        //wx.navigateBack()
+        wx.navigateTo({
+          url: "/pages/index/index"
+        })
       }).catch(err => {
         console.log(">>>> create question error:", err)
       }).then(() => {

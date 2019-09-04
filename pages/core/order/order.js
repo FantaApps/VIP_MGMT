@@ -129,6 +129,9 @@ Page({
             'result': "成功"
           }
         )
+        wx.navigateTo({
+          url: "/pages/index/index"
+        })
       },
       fail(res) {
         console.log(res)

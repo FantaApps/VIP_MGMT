@@ -139,8 +139,8 @@ App({
     }, 1000)
   },
   
-  //server: "https://www.streamnet-chain.com",
-  server: "http://localhost:8089",
+  server: "https://www.streamnet-chain.com",
+  //server: "http://localhost:8089",
   //server: "http://150.109.145.30:8089",
   //server: "http://39.100.142.164:8089",
 })
