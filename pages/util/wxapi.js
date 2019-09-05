@@ -80,5 +80,8 @@ module.exports = {
   },
   confirmPurchase: (data) => {
     return request('/v1/product/purchase', 'PUT', data)
+  },
+  getOpenId: (data) => {
+    return request('/v1/project/openid', 'GET', data)
   }
 }

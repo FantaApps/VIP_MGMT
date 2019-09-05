@@ -1,5 +1,5 @@
 // pages/user/user.js
-const WXAPI = require('../../util/wxapi')
+const JIYOU = require('../../util/wxapi')
 var app = getApp()
 
 Page(
@@ -16,28 +16,26 @@ Page(
       wx.login({
         success: function (res) {
           if (res.code) {
-            var l = 'https://api.weixin.qq.com/sns/jscode2session?appid=' + appid + '&secret=' + secret + '&js_code=' + res.code + '&grant_type=authorization_code';
-            wx.request({
-              url: l,
-              data: {},
-              method: 'GET',
-              success: function (res) {
-                var openid = res.data.openid
-                console.log('请求获取openid:' + openid);
-                wx.setStorageSync('openid', openid);
-                that.setData({ openid: "获取到的openid：" + openid
-                })
-                if (openid == 'o4-7m5WiO7PdZRnBLEyO7anGn3FM' ||
-                  openid == 'o4-7m5W7wuhN8C2ktqxt0rpbvBpc') {
-                  app.globalData.nav = app.data.navs1
-                } else {
-                  app.globalData.nav = app.data.navs
-                }
-              }
-            });
-          } else {
-            console.log('获取用户登录态失败！' + res.errMsg)
           }
+          JIYOU.getOpenId(
+            {
+              project : "若水藏真",
+              resCode : res.code 
+            }
+          ).then(function (res) {
+            var openid = res.data
+            console.log('请求获取openid:' + openid);
+            wx.setStorageSync('openid', openid);
+            that.setData({
+              openid: "获取到的openid：" + openid
+            })
+            if (openid == 'o4-7m5WiO7PdZRnBLEyO7anGn3FM' ||
+              openid == 'o4-7m5W7wuhN8C2ktqxt0rpbvBpc') {
+              app.globalData.nav = app.data.navs1
+            } else {
+              app.globalData.nav = app.data.navs
+            }
+          })
         }
       });
 
