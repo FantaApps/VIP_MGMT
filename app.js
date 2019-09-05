@@ -27,7 +27,7 @@ App({
         desc: "增加VIP",
         verify: "jwc"
       }, {
-        key: "order",
+        key: "search",
         desc: "下单",
         verify: "jwc"
       }

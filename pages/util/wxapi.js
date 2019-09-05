@@ -74,5 +74,11 @@ module.exports = {
   getProductId : (data) => {
     console.log(data)
     return request('/v1/product', 'GET', data)
+  },
+  getUnconfirmedPurchase: (data) => {
+    return request('/v1/product/sale/unconfirmed', 'GET', data)
+  },
+  confirmPurchase: (data) => {
+    return request('/v1/product/purchase', 'PUT', data)
   }
 }
