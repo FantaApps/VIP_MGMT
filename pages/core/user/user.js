@@ -10,16 +10,13 @@ Page(
     }, // 获取用户openid
 
     getOpenid: function() {
-      var appid = 'wxedc8ed909fd5ad11'
-      var secret = '73d7d1af4e520f0f641a2402d955a1d7'
       let that = this;
       wx.login({
         success: function (res) {
-          if (res.code) {
-          }
           JIYOU.getOpenId(
             {
               project : "若水藏真",
+              appid: "wxedc8ed909fd5ad11",
               resCode : res.code 
             }
           ).then(function (res) {
