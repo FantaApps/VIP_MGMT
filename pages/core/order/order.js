@@ -115,6 +115,7 @@ Page({
         product_id: that.data.productId,
         user_id: that.data.userInfo[that.data.index].iD,
         description: that.data.productDescription,
+        appid: 'wxedc8ed909fd5ad11',
         status: 'INITIATED',
         sale_time: utc
       },

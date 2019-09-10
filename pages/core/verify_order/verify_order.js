@@ -44,6 +44,7 @@ Page({
               user_id: that.data.itemData[idx].user_id,
               product_id: that.data.itemData[idx].product_id,
               project: that.data.itemData[idx].project,
+              appid: 'wxedc8ed909fd5ad11',
               status: "COMPLETED",
               description: that.data.itemData[idx].description,
               sale_time: utc
