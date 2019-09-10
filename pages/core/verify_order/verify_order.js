@@ -17,7 +17,6 @@ Page({
   touchM: function (e) {  // touchmove
     let itemData = this.Touches.touchM(e, this.data.itemData, this.data.startX)
     itemData && this.setData({ itemData })
-
   },
   touchE: function (e) {  // touchend
     const width = 150  // 定义操作列表宽度
@@ -25,6 +24,24 @@ Page({
     itemData && this.setData({ itemData })
   },
   itemDelete: function (e) {  // itemDelete
+    // delete from database
+    var that = this
+    var idx = e.target.dataset.index
+    var utc = new Date().toJSON().slice(0, 24);
+    JIYOU.confirmPurchase(
+      {
+        orderId: that.data.itemData[idx].order_id,
+        user_id: that.data.itemData[idx].user_id,
+        product_id: that.data.itemData[idx].product_id,
+        project: that.data.itemData[idx].project,
+        appid: 'wxedc8ed909fd5ad11',
+        status: "DELETED",
+        description: that.data.itemData[idx].description,
+        sale_time: utc
+      }
+    ).then(function (res) {
+    })
+
     let itemData = this.Touches.deleteItem(e, this.data.itemData)
     itemData && this.setData({ itemData })
   },
