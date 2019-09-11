@@ -78,6 +78,7 @@ Page({
     })
   },
   onLoad: function (options) {
+    app.checkLogin()
     let that = this
     
     JIYOU.getUnconfirmedPurchase(

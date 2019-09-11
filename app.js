@@ -86,23 +86,26 @@ App({
       })
     }
   },
-  
+  onLoad: function () {
+    this.checkLogin()
+  },
   onLaunch: function() {
+    this.checkLogin()
+  },
+  checkLogin : function () {
     const token = wx.getStorageSync('openid');
-    this.globalData.token = token;
-    console.log(token)
-
-    if (token == 'o4-7m5WiO7PdZRnBLEyO7anGn3FM' ||
-        token == 'o4-7m5W7wuhN8C2ktqxt0rpbvBpc') {
-      this.globalData.nav = this.data.navs1
-    } else {
-      this.globalData.nav = this.data.navs
-    }
-
     if (!token) {
       wx.navigateTo({
         url: "/pages/core/user/user"
       })
+    } else {
+      this.globalData.token = token;
+      if (token == 'o4-7m5WiO7PdZRnBLEyO7anGn3FM' ||
+        token == 'o4-7m5W7wuhN8C2ktqxt0rpbvBpc') {
+        this.globalData.nav = this.data.navs1
+      } else {
+        this.globalData.nav = this.data.navs
+      }
     }
   },
   getUserId : function () {
@@ -138,7 +141,6 @@ App({
       })
     }, 1000)
   },
-  
   server: "https://www.streamnet-chain.com",
   //server: "http://localhost:8089",
   //server: "http://150.109.145.30:8089",

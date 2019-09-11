@@ -20,6 +20,7 @@ Page({
     result : ''
   },
   onLoad: function (options) {
+    app.checkLogin()
     let that = this
     wx.request({
       url: app.server + "/v1/user/unconfirmed",
@@ -32,22 +33,24 @@ Page({
       },
       success(res) {
         console.log(res.data.data.listUsers)
-        var lst = res.data.data.listUsers
-        var tmp = []
-        for (var i=0; i < lst.length; i++) {
-          tmp.push(lst[i].name)
+        if (res.data.data.listUsers.length > 0) {
+          var lst = res.data.data.listUsers
+          var tmp = []
+          for (var i=0; i < lst.length; i++) {
+            tmp.push(lst[i].name)
+          }
+          that.setData({
+            'array': tmp,
+            'weChatId': lst[0].weChatID,
+            'userName': lst[0].name,
+            'address': lst[0].address,
+            'phoneNum': lst[0].phoneNum,
+            'email': lst[0].email,
+            'fromVipId': lst[0].fromID,
+            'toId': lst[0].iD,
+            'listUsers' : res.data.data.listUsers
+          })
         }
-        that.setData({
-          'array': tmp,
-          'weChatId': lst[0].weChatID,
-          'userName': lst[0].name,
-          'address': lst[0].address,
-          'phoneNum': lst[0].phoneNum,
-          'email': lst[0].email,
-          'fromVipId': lst[0].fromID,
-          'toId': lst[0].iD,
-          'listUsers' : res.data.data.listUsers
-        })
       },
       fail(res) {
         console.log(res)

@@ -20,6 +20,7 @@ Page({
   },
 
   onLoad(options) {
+    app.checkLogin()
     $init(this)
   },
 

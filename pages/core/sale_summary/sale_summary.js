@@ -4,6 +4,7 @@ Page({
   data: {
   },
   onLoad: function () {
+    app.checkLogin()
     let that = this
     wx.request({
       url: app.server + "/v1/product/sale/summary",

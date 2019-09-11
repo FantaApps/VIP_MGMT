@@ -17,25 +17,28 @@ Page({
     contentEmpty: true
   },
   onLoad: function (opt) {
+    app.checkLogin()
     var that = this
     var data = {
       "project" : "若水藏真"
     }
     WXAPI.getUserAdded(data).then(function (res) {
       var lstUsers = res.data.listUsers
-      var arr = []
-      for(var i=0; i<lstUsers.length; i++) {
-        arr.push(lstUsers[i].name)
-      }
-      that.setData(
-        {
-          'index': 0,
-          'array' : arr,
-          'userName' : lstUsers[0].name,
-          'wechatID': arr[0],
-          'listUsers' : lstUsers
+      if (lstUsers.length > 0) {
+        var arr = []
+        for(var i=0; i<lstUsers.length; i++) {
+          arr.push(lstUsers[i].name)
         }
-      )
+        that.setData(
+          {
+            'index': 0,
+            'array' : arr,
+            'userName' : lstUsers[0].name,
+            'wechatID': arr[0],
+            'listUsers' : lstUsers
+          }
+        )
+      }
     })
   },
   inputTitle: function (e) {

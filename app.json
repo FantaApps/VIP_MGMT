@@ -1,11 +1,11 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/core/user/user",
     "pages/core/input_user/input_user",
     "pages/core/verify_user/verify_user",
     "pages/core/verify_order/verify_order",
     "pages/core/order/order",
-    "pages/index/index",
     "pages/core/sale_month/sale_month",
     "pages/core/score/score",
     "pages/core/sale_summary/sale_summary",
@@ -18,6 +18,26 @@
     "navigationBarBackgroundColor": "#00BCD4",
     "navigationBarTitleText": "若水藏真",
     "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#e4e4e4",
+    "selectedColor": "#e64340",
+    "borderStyle": "white",
+    "backgroundColor": "#e4e4e4",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/nav/home-off.png",
+        "selectedIconPath": "images/nav/home-on.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/core/user/user",
+        "iconPath": "images/nav/my-off.png",
+        "selectedIconPath": "images/nav/my-on.png",
+        "text": "我的"
+      }
+    ]
   },
   "sitemapLocation": "sitemap.json"
 }

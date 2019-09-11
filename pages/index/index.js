@@ -23,51 +23,14 @@ Page({
   onLoad: function(options) {
     // 查看是否授权
     app.getUserId()
-    wx.getSetting({
-      success(res) {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-          wx.getUserInfo({
-            success: function (res) {
-              app.globalData.userInfo = res.userInfo
-              console.log(app.globalData.userInfo)
-              const token = wx.getStorageSync('openid');
-              app.globalData.token = token;
-              var utc = new Date().toJSON().slice(0, 24);
-              // sync to DB
-              var addUserData = {
-                "userName": res.userInfo.nickName,
-                "weChatId": token,
-                "project" : "若水藏真",
-                "phoneNum" : '',
-                "email" : '',
-                "address" : '',
-                "status" : 'ADDED',
-                "fromVipId" : -1,
-                "createdAt": utc
-              }
-              WXAPI.addUserAccount(addUserData)
-            }
-          })
-        } else {
-          wx.navigateTo({
-            url: '/pages/core/user/user',
-          })
-        }
-      },
-      fail(res) {
-        wx.navigateTo({
-          url: '/pages/core/user/user',
-        })
-      }
-    })
     var that = this
     this.setData({
       "remind": app.remind,
       "offline": app.offline,
     })
-    
-    
+  },
+  onShow: function() {
+    app.checkLogin()
   },
   bindGetUserInfo(e) {
     console.log(e.detail.userInfo)

@@ -10,6 +10,7 @@ Page({
     return (mm + ',' + yyyy);
   },
   onLoad: function () {
+    app.checkLogin()
     let that = this
     var today = this.curday();
     wx.request({
