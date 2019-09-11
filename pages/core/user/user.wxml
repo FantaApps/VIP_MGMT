@@ -1,2 +1,2 @@
-
+<button class='btn1' bindtap='denyLogin' open-type="getUserInfo">拒绝登陆</button>
 <button class='btn' bindtap='authorizeLogin' open-type="getUserInfo">授权登陆</button>

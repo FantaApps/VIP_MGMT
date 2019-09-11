@@ -4,3 +4,10 @@
   background-color: #5BC236;
   color: #FFF;
 }
+
+.btn1 {
+  width: 60%;
+  margin-top: 50%;
+  background-color: #c2365b;
+  color: #FFF;
+}

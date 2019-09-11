@@ -8,6 +8,11 @@ Page(
     {  
       openid: ''
     }, // 获取用户openid
+    denyLogin: function() {
+      wx.switchTab({
+        url: '/pages/index/index',
+      })
+    },
     getOpenid: function () {
       let that = this;
       wx.login({
