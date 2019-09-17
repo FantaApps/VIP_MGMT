@@ -49,7 +49,13 @@ Page({
       }
     })
     that.getUserAdded()
-    
+    // generate a uuid for idem purpose
+    let r = Math.random().toString(36);
+    that.setData(
+      {
+        'requestId' : r
+      }
+    )
   },
   getProductId : function () {
     var that = this
@@ -111,6 +117,7 @@ Page({
     wx.request({
       url: app.server + "/v1/product/purchase",
       data: {
+        requestId : that.data.requestId,
         project: '若水藏真',
         product_id: that.data.productId,
         user_id: that.data.userInfo[that.data.index].iD,
@@ -127,12 +134,17 @@ Page({
         console.log("success")
         that.setData(
           {
-            'result': "成功"
+            'result': "成功，5秒后跳转："
           }
         )
-        wx.navigateTo({
-          url: "/pages/index/index"
-        })
+
+        setTimeout(function () {
+          //要延时执行的代码
+          wx.switchTab({
+            url: "/pages/index/index"
+          })
+        }, 5000) //延迟时间 
+
       },
       fail(res) {
         console.log(res)
