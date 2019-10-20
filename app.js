@@ -95,7 +95,7 @@ App({
   checkLogin : function () {
     const token = wx.getStorageSync('openid');
     if (!token) {
-      wx.navigateTo({
+      wx.switchTab({
         url: "/pages/core/user/user"
       })
     } else {

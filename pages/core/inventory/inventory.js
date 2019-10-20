@@ -1,7 +1,6 @@
 import { promisify } from '../../utils/promise.util'
 import { $init, $digest } from '../../utils/common.util'
 const JIYOU = require('../../util/wxapi')
-const WXAPI = require('apifm-wxapi')
 var app = getApp()
 const wxUploadFile = promisify(wx.uploadFile)
 
